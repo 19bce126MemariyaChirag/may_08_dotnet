@@ -1,8 +1,12 @@
 pipeline {
-  agent 
-  stages {
-    stage('Build'){
-    sh 'dotnet build'
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                
+                // Build the project
+                sh 'dotnet build'
+            }
+        }
     }
-  }
 }
