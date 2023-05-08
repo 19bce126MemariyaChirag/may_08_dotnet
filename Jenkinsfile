@@ -38,5 +38,15 @@ pipeline {
                 }
             }
         }
+        stage('Docker Push') {
+            steps {
+                // Push Docker image to registry
+                script {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}", "dockerhub-token") {
+                        dockerImagePush("${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}")
+                    }
+                }
+            }
+        }
     }
 }
