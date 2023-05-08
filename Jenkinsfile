@@ -36,19 +36,14 @@ pipeline {
                 }
             }
         }
-        stage('Docker Login') {
+        stage('Docker Login and Push') {
             steps {
                 // Log in to Docker registry
                 withCredentials([usernamePassword(credentialsId: 'docker-token', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh "docker push ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}"
                 }
             }
         }
-//         stage('Docker Push') {
-//             steps {
-                
-//                 }
-//             }
-//         }
     }
 }
