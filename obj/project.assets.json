@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/MyWebApp/MyWebApp.csproj",
+      "projectUniqueName": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/mywebap/MyWebApp.csproj",
       "projectName": "MyWebApp",
-      "projectPath": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/MyWebApp/MyWebApp.csproj",
+      "projectPath": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/mywebap/MyWebApp.csproj",
       "packagesPath": "/Users/chiragmemriya/.nuget/packages/",
-      "outputPath": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/MyWebApp/obj/",
+      "outputPath": "/Users/chiragmemriya/Documents/CSharpDev/Projects/dotnet-dotnet-jenkins/mywebap/mywebap/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/chiragmemriya/.nuget/NuGet/NuGet.Config"
