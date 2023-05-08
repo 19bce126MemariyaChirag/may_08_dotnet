@@ -15,5 +15,10 @@ pipeline {
                 sh 'dotnet test'
             }
         }
+        stage('pulbish'){
+            steps{
+                // Publish the project
+                sh 'dotnet publish -c Release -o ./publish'
+            }
     }
 }
