@@ -1,6 +1,6 @@
-FROM alpine:3.13.5
+#FROM alpine:3.13.5
 # # Use the official .NET Core SDK image as the base image
-# FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0 #AS build-env
 
 # # Set the working directory to /app
 # WORKDIR /app
