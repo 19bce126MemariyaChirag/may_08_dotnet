@@ -42,7 +42,7 @@ pipeline {
             steps {
                 // Push Docker image to registry
                 script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", "dockerhub-token") {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}", "docker-token") {
                         dockerImagePush("${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}")
                     }
                 }
