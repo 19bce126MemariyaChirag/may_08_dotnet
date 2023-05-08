@@ -1,11 +1,15 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build ASP.NET App') {
-            steps {
-                sh 'docker build -t myapp:latest .'
-            }
+	agent none
+  stages {
+  	stage('Maven Install') {
+    	agent {
+      	docker {
+        	image 'maven:3.5.0'
         }
+      }
+      steps {
+      	sh 'mvn clean install'
+      }
     }
+  }
 }
