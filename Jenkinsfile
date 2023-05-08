@@ -4,7 +4,10 @@ pipeline {
         APP_NAME = "my-web-dotnet-app"
         APP_PORT = "5000"
         IMAGE_TAG = "latest"
-        DOCKER_REGISTRY = "https://hub.docker.com/u/memariyachirag126"
+        DOCKER_REGISTRY="memariyachirag126"
+        DOCKER_USERNAME="memariyachirag126"
+        DOCKER_PASSWORD="dckr_pat_QUWempv4V6X7lbUR-UU83Y0lIdo"
+        
     }
     stages {
         stage('Build') {
