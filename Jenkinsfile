@@ -5,8 +5,6 @@ pipeline {
         APP_PORT = "5000"
         IMAGE_TAG = "latest"
         DOCKER_REGISTRY="memariyachirag126"
-        DOCKER_USERNAME="memariyachirag126"
-        DOCKER_PASSWORD="dckr_pat_QUWempv4V6X7lbUR-UU83Y0lIdo"
         
     }
     stages {
@@ -38,15 +36,19 @@ pipeline {
                 }
             }
         }
-        stage('Docker Push') {
+        stage('Docker Login') {
             steps {
-                // Push Docker image to registry
-                script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", "docker-token") {
-                        dockerImagePush("${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}")
-                    }
+                // Log in to Docker registry
+                withCredentials([usernamePassword(credentialsId: 'docker-token', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} ${DOCKER_REGISTRY}"
                 }
             }
         }
+//         stage('Docker Push') {
+//             steps {
+                
+//                 }
+//             }
+//         }
     }
 }
