@@ -28,10 +28,10 @@ pipeline {
         sh 'docker push memariyachirag126/jenkins-docker-hub'
       }
     }
-  }
-  post {
-    always {
-      sh 'docker logout'
+    post {
+      always {
+        sh 'docker logout'
+      }
     }
   }
 }
