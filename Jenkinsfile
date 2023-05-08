@@ -20,5 +20,6 @@ pipeline {
                 // Publish the project
                 sh 'dotnet publish -c Release -o ./publish'
             }
+        }
     }
 }
