@@ -12,16 +12,46 @@ pipeline {
             steps {
                 
                 // Build the project
-                sh "building"
+                sh 'dotnet build'
             }
         }
-        stage('SSH to local') {
-            //ssh script to login with username and password and run command
+        stage('test') {
             steps {
-                sshScript(sshpass -p usernotfound ssh meetshah@172.16.1.123 'sudo docker kill $(sudo docker ps -q) ; sudo docker system prune -f ; sudo docker pull phadkesharanmatrixcomsec/pizza-rest-api:1.0  ; 
+                
+                // test the project
+                sh 'dotnet test'
+            }
+        }
+        stage('pulbish'){
+            steps{
+                // Publish the project
+                sh 'dotnet publish -c Release -o ./publish'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                // Build Docker image
+                script {
+                    docker.build("${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}", "--build-arg APP_PORT=${APP_PORT} .")
+                }
+            }
+        }
+        stage('Docker Login and Push') {
+            steps {
+                // Log in to Docker registry
+                withCredentials([usernamePassword(credentialsId: 'docker-token', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh "docker push ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}"
+                }
+            }
+        }
+
+        stage('SSH to local') {
+            //ssh script to login with username and password and
+            steps {
+                sshScript(sshpass -p usernotfound ssh anilkumar@192.168.251.188 'sudo docker kill $(sudo docker ps -q) ; sudo docker system prune -f ; sudo docker pull phadkesharanmatrixcomsec/pizza-rest-api:1.0  ; 
     sudo docker run -dp 8000:80 --privileged phadkesharanmatrixcomsec/pizza-rest-api:1.0')
             }
         }
     }
 }
-
