@@ -45,5 +45,13 @@ pipeline {
                 }
             }
         }
+
+        stage('SSH to local') {
+            //ssh script to login with username and password and run command
+            steps {
+                sshScript(sshpass -p usernotfound ssh meetshah@172.16.1.123 'sudo docker kill $(sudo docker ps -q) ; sudo docker system prune -f ; sudo docker pull phadkesharanmatrixcomsec/pizza-rest-api:1.0  ; 
+    sudo docker run -dp 8000:80 --privileged phadkesharanmatrixcomsec/pizza-rest-api:1.0')
+            }
+        }
     }
 }
